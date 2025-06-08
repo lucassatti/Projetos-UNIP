@@ -12,7 +12,7 @@ import platform  #Serve para identificar e localizar diretorios no Windows/MacOS
 def gerar_hash(senha): # Função pra gerar o hash da senha em hexadecimal
     return hashlib.sha256(senha.encode()).hexdigest()
 
-caminho_arquivo = r"C:\Users\ramos\Desktop\PythonProjects\pim\usuarios.json"
+caminho_arquivo = r"C:\Users\lucas.ramos\Downloads\Projetos-UNIP-main\Projetos-UNIP-main\pim\usuarios.json"
 
 def salvar_usuarios(lista_de_usuarios):# Função para salvar os dados dos usuários no arquivo JSON
     with open(caminho_arquivo, "w") as arquivo:
@@ -24,7 +24,7 @@ def carregar_usuarios(): # Função para carregar os dados dos usuários já sal
             with open(caminho_arquivo, "r") as arquivo:
                 return json.load(arquivo)  
             return {}  
-caminho_pdfpp = r"C:\Users\ramos\Desktop\PythonProjects\pim\PPconteudo.pdf" 
+caminho_pdfpp = r"C:\Users\lucas.ramos\Downloads\Projetos-UNIP-main\Projetos-UNIP-main\pim\PPconteudo.pdf" 
 def abrir_pdf(caminho_pdf): #Função para abrir o PDF do curso de Programação Python
     if platform.system() == "Windows":
         os.startfile(caminho_pdf)
@@ -33,7 +33,7 @@ def abrir_pdf(caminho_pdf): #Função para abrir o PDF do curso de Programação
     else:  # Linux
         os.system(f"xdg-open '{caminho_pdf}'")
 
-caminho_pdfsi = r"C:\Users\ramos\Desktop\PythonProjects\pim\SIconteudo.pdf" 
+caminho_pdfsi = r"C:\Users\lucas.ramos\Downloads\Projetos-UNIP-main\Projetos-UNIP-main\pim\SIconteudo.pdf" 
 def abrir_pdf(caminho_pdf): #Função para abrir o PDF do curso de SI 
     if platform.system() == "Windows":
         os.startfile(caminho_pdf)
@@ -42,7 +42,7 @@ def abrir_pdf(caminho_pdf): #Função para abrir o PDF do curso de SI
     else:  # Linux
         os.system(f"xdg-open '{caminho_pdf}'")
 
-caminho_pdfplc = r"C:\Users\ramos\Desktop\PythonProjects\pim\PLCconteudo.pdf" 
+caminho_pdfplc = r"C:\Users\lucas.ramos\Downloads\Projetos-UNIP-main\Projetos-UNIP-main\pim\PLCconteudo.pdf" 
 def abrir_pdf(caminho_pdf): #Função para abrir o PDF do curso de PLC 
     if platform.system() == "Windows":
         os.startfile(caminho_pdf)
@@ -133,12 +133,14 @@ def selecao_cursos(nome): # Após o user fazer login no case 2 da def de login, 
                 melhor_curso = ""
                 maior_nota = max(nota_plc, nota_sg, nota_py)
 
-                if maior_nota == nota_plc:
+                if maior_nota == nota_plc and maior_nota != 0:
                     melhor_curso = "Pensamento Lógico Computacional"
-                elif maior_nota == nota_sg:
+                elif maior_nota == nota_sg and maior_nota != 0:
                     melhor_curso = "Segurança Digital"
-                else:
+                elif maior_nota == nota_py and maior_nota != 0:
                     melhor_curso = "Programação em Python"
+                elif maior_nota == 0:
+                    maior_nota == 'Sem provas realizadas'
                 print("\n| INFORMAÇÕES DO ALUNO |\n")
                 print(f"{'Usuário:':<15} {nome}")
                 print(f"{'ID:':<15} {dados_usuario.get('id', 'Sem ID')}")
